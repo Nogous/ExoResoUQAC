@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+TP2/DataTransmitter/.vs/
+
+TP2/DataTransmitter/out/
