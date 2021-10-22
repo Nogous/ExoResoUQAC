@@ -6,7 +6,7 @@
 using namespace std;
 
 int main()
-{
+{/*
 	Serializer s = Serializer(10);
 	
 	char mystring[] = "sltlazonecommentcava";
@@ -19,7 +19,7 @@ int main()
 
 	float myFloat = 1.23456f;
 	s.SerializeData(myFloat);
-	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;
+	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;*/
 	
 	return 0;
 }
