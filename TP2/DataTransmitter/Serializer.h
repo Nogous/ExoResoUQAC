@@ -3,7 +3,7 @@
 class Serializer {
 
 private:
-	std::vector<char> buffer;
+	std::vector<int> buffer;
 	int position;
 public:
 	Serializer();
@@ -21,10 +21,12 @@ public:
 		}
 		else
 		{
-			std::vector<char>::iterator it;
-			it = buffer.begin();
-			buffer.insert(it + position, data);
+			data.Write(buffer);
 		}
 	}
-	std::vector<char> GetBuffer() { return buffer; }
+
+	void Write(int data);
+	void Write(float data);
+	
+	std::vector<int> GetBuffer() { return buffer; }
 };
