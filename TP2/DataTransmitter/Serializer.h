@@ -4,12 +4,12 @@
 class Serializer {
 
 private:
-	std::vector<int> buffer;
-	int position;
+	std::vector<char> buffer;
+	size_t position;
 public:
 	Serializer();
 	Serializer(int size);
-	void ResizeBuffer();
+	void ResizeBuffer(size_t size);
 
 	template <class T>
 	void SerializeData(const T data) 
@@ -26,8 +26,8 @@ public:
 		}
 	}
 
-	void Write(int data);
-	void Write(float data);
+	void Write(int data, int min, int max);
+	void Write(float data, float min, float max, int accuracy);
 	
-	std::vector<int> GetBuffer() { return buffer; }
+	std::vector<char> GetBuffer() { return buffer; }
 };

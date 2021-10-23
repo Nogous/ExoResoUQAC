@@ -11,14 +11,14 @@ Deserializer::~Deserializer()
 {
 }
 
-int Deserializer::ReadInt(std::vector<int> buffer)
+int Deserializer::ReadInt(std::vector<char> buffer, int min, int max)
 {
-	position++;
-	return Decompressor((int)*(buffer.begin() + position));
+	return Decompressor((int)*(buffer.begin() + position), min);
+	position += sizeof(max-min);
 }
 
-float Deserializer::ReadFloat(std::vector<int> buffer)
+float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, int accuracy)
 {
-	position++;
-	return Decompressor((float)*(buffer.begin() +position));
+	return Decompressor((float)*(buffer.begin() +position), min, accuracy);
+	position += sizeof(max*accuracy - min*accuracy);
 }

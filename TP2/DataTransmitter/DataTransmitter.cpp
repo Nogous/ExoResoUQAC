@@ -27,9 +27,9 @@ int main()
 	Player player2 = Player();
 
 	std::cout << player.life << std::endl;
-	std::cout << player.weight << std::endl;
+	std::cout << player.money << std::endl;
 	std::cout << player2.life << std::endl;
-	std::cout << player2.weight << std::endl;
+	std::cout << player2.money << std::endl;
 	std::cout << "---------------------------" << std::endl;
 
 	Serializer ser = Serializer();
@@ -38,9 +38,9 @@ int main()
 	player2.Read(deser, ser.GetBuffer());
 
 	std::cout << player.life << std::endl;
-	std::cout << player.weight << std::endl;
+	std::cout << player.money << std::endl;
 	std::cout << player2.life << std::endl;
-	std::cout << player2.weight << std::endl;
+	std::cout << player2.money << std::endl;
 
 	//float myFloat = 1.23456f;
 	//int myInt = 4000;

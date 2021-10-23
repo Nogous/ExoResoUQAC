@@ -1,45 +1,37 @@
 #pragma once
 
-const int MIN_INT = -10;
-const int MAX_INT = 300;
+static int Compressor(int i, int min, int max) {
 
-static int Compressor(int i) {
-	//int maxRange = 300;
+	if (i < min)
+		i = min;
+	else if (i > max)
+		i = max;
 
-	if (i < MIN_INT)
-		i = MIN_INT;
-	else if (i > MAX_INT)
-		i = MAX_INT;
-
-	return i - MIN_INT;
+	return i - min;
 }
 
-const int MIN_FLOAT = -9999;
-const int MAX_FLOAT = 9999;
-const int FLOAT_ACCURACY = 100;
-
-static int Compressor(float f) {
+static int Compressor(float f, float min, float max, int accuracy) {
 	
-	f *= FLOAT_ACCURACY;
-	if (f < MIN_FLOAT)
-		f = MIN_FLOAT;
-	else if (f > MAX_FLOAT)
-		f = MAX_FLOAT;
+	f *= accuracy;
+	if (f < min)
+		f = min;
+	else if (f > max)
+		f = max;
 
-	f -= MIN_FLOAT;
+	f -= min;
 	
 	return (int)f;
 }
 
-static int Decompressor(int i)
+static int Decompressor(int i, int min)
 {
-	i += MIN_INT;
+	i += min;
 	return i;
 }
 
-static float Decompressor(float f)
+static float Decompressor(float f, float min, int accuracy)
 {
-	f += MIN_FLOAT;
-	f /= FLOAT_ACCURACY;
+	f += min;
+	f /= accuracy;
 	return f;
 }

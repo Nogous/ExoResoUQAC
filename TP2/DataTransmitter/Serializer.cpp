@@ -5,34 +5,43 @@
 Serializer::Serializer()
 {
 	position = 0;
-	buffer = std::vector<int>();
-	buffer.reserve(128);
+	buffer = std::vector<char>(4);
 }
 
 Serializer::Serializer(int size)
 {
 	position = 0;
-	buffer = std::vector<int>();
-	buffer.reserve(size);
 }
 
-void Serializer::ResizeBuffer()
+void Serializer::ResizeBuffer(size_t size)
 {
 	std::cout << "Resizing Buffer" << std::endl;
-	buffer.resize(buffer.size() * 2);
+	buffer.resize(buffer.size() + size);
 	std::cout << "Buffer Size is now : " << buffer.capacity() << std::endl;
 }
 
-void Serializer::Write(int data)
+void Serializer::Write(int data, int min, int max)
 {
-	std::vector<int>::iterator it = buffer.begin();
-	buffer.insert(it + position, Compressor(data));
-	position ++;
+	size_t sizeMax = sizeof(max - min);
+	char c = (char)Compressor(data, min, max);
+	if (position + sizeMax > buffer.size())
+	{
+		ResizeBuffer(sizeMax);
+	}
+	std::memcpy(buffer.data() + position, &c, sizeMax);
+
+	position += sizeMax;
 }
 
-void Serializer::Write(float data)
+void Serializer::Write(float data, float min, float max, int accuracy)
 {
-	std::vector<int>::iterator it = buffer.begin();
-	buffer.insert(it + position, Compressor(data));
-	position++;
+	size_t sizeMax = sizeof((max * accuracy) - (min * accuracy));
+	char c = (char)Compressor(data, min, max);
+	if (position + sizeMax > buffer.size())
+	{
+		ResizeBuffer(sizeMax);
+	}
+	std::memcpy(buffer.data() + position, &c, sizeMax);
+
+	position += sizeMax;
 }
