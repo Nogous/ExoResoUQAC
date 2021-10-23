@@ -22,7 +22,7 @@ int main()
 	s.SerializeData(myFloat);
 	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;*/
 
-	Player player = Player(256, 3.5f);
+	Player player = Player(843652, 3.5f);
 
 	Player player2 = Player();
 

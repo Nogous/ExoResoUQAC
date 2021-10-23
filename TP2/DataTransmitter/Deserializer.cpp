@@ -19,7 +19,7 @@ int Deserializer::ReadInt(std::vector<char> buffer, int min, int max)
 	unsigned char c[sizeMax];
 	std::memcpy(c, buffer.data() + activePos, sizeMax);
 
-	return Decompressor((int)*c, min);
+	return Decompressor(*(int*)c, min);
 }
 
 float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, int accuracy)
