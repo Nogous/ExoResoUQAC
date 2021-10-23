@@ -22,25 +22,25 @@ int main()
 	s.SerializeData(myFloat);
 	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;*/
 
-	Player player = Player(2, 3.5f);
+	Player player = Player(256, 3.5f);
 
 	Player player2 = Player();
 
 	std::cout << player.life << std::endl;
-	std::cout << player.money << std::endl;
+	//std::cout << player.money << std::endl;
 	std::cout << player2.life << std::endl;
-	std::cout << player2.money << std::endl;
+	//std::cout << player2.money << std::endl;
 	std::cout << "---------------------------" << std::endl;
 
-	Serializer ser = Serializer();
+	Serializer ser = Serializer(256);
 	player.Write(ser);
 	Deserializer deser = Deserializer();
 	player2.Read(deser, ser.GetBuffer());
 
 	std::cout << player.life << std::endl;
-	std::cout << player.money << std::endl;
+	//std::cout << player.money << std::endl;
 	std::cout << player2.life << std::endl;
-	std::cout << player2.money << std::endl;
+	//std::cout << player2.money << std::endl;
 
 	//float myFloat = 1.23456f;
 	//int myInt = 4000;

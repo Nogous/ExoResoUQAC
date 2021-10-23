@@ -12,14 +12,14 @@ static int Compressor(int i, int min, int max) {
 
 static int Compressor(float f, float min, float max, int accuracy) {
 	
-	f *= accuracy;
 	if (f < min)
 		f = min;
 	else if (f > max)
 		f = max;
 
 	f -= min;
-	
+	f *= accuracy;
+
 	return (int)f;
 }
 
@@ -31,7 +31,7 @@ static int Decompressor(int i, int min)
 
 static float Decompressor(float f, float min, int accuracy)
 {
-	f += min;
 	f /= accuracy;
+	f += min;
 	return f;
 }

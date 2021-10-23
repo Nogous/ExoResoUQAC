@@ -10,6 +10,7 @@ Serializer::Serializer()
 
 Serializer::Serializer(int size)
 {
+	buffer = std::vector<char>(size);
 	position = 0;
 }
 
@@ -22,8 +23,9 @@ void Serializer::ResizeBuffer(size_t size)
 
 void Serializer::Write(int data, int min, int max)
 {
-	size_t sizeMax = sizeof(max - min);
-	char c = (char)Compressor(data, min, max);
+	size_t sizeMax = 4;
+	char* c = (char*)Compressor(data, min, max);
+	
 	if (position + sizeMax > buffer.size())
 	{
 		ResizeBuffer(sizeMax);
@@ -36,7 +38,7 @@ void Serializer::Write(int data, int min, int max)
 void Serializer::Write(float data, float min, float max, int accuracy)
 {
 	size_t sizeMax = sizeof((max * accuracy) - (min * accuracy));
-	char c = (char)Compressor(data, min, max);
+	char* c = (char*)Compressor(data, min, max, accuracy);
 	if (position + sizeMax > buffer.size())
 	{
 		ResizeBuffer(sizeMax);

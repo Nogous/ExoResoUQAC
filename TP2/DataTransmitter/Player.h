@@ -4,11 +4,11 @@
 class Player {
 
 private:
-	const int MIN_LIFE = 0;
-	const int MAX_LIFE = 300;
+	const int MIN_LIFE = -10;
+	const int MAX_LIFE = 30000;
 
-	const float MIN_MONEY = -99999.99f;
-	const float MAX_MONEY =  99999.99f;
+	const float MIN_MONEY = -100.10f;
+	const float MAX_MONEY =  200.20f;
 	const int ACCURACY_MONEY = 100;
 
 public :
