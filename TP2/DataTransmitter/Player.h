@@ -1,4 +1,5 @@
 #include "Serializer.h"
+#include "Deserializer.h"
 
 class Player {
 
@@ -12,6 +13,6 @@ public :
 	float weight;
 
 	void Write(Serializer& serializer);
-	void Read(Serializer& serializer);
+	void Read(Deserializer& deserializer, std::vector<int> buffer);
 	int GetDataSize();
 };

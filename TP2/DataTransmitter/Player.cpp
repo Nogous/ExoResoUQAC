@@ -7,8 +7,10 @@ void Player::Write(Serializer& serializer)
 	serializer.Write(weight);
 }
 
-void Player::Read(Serializer& serializer)
+void Player::Read(Deserializer& deserializer, std::vector<int> buffer)
 {
+	life = deserializer.ReadInt(buffer);
+	weight = deserializer.ReadFloat(buffer);
 }
 
 int Player::GetDataSize()

@@ -1,16 +1,17 @@
 #pragma once
 
+const int MIN_INT = -10;
+const int MAX_INT = 300;
+
 static int Compressor(int i) {
-	int min = 0;
-	int max = 300;
-	int maxRange = 300;
+	//int maxRange = 300;
 
-	if (i < min)
-		i = min;
-	else if (i > max)
-		i = max;
+	if (i < MIN_INT)
+		i = MIN_INT;
+	else if (i > MAX_INT)
+		i = MAX_INT;
 
-	return i;
+	return i - MIN_INT;
 }
 
 const int MIN_FLOAT = -9999;
@@ -28,6 +29,12 @@ static int Compressor(float f) {
 	f -= MIN_FLOAT;
 	
 	return (int)f;
+}
+
+static int Decompressor(int i)
+{
+	i += MIN_INT;
+	return i;
 }
 
 static float Decompressor(float f)
