@@ -32,7 +32,7 @@ int main()
 	std::cout << player2.money << std::endl;
 	std::cout << "---------------------------" << std::endl;
 
-	Serializer ser = Serializer(256);
+	Serializer ser = Serializer(1);
 	player.Write(ser);
 	Deserializer deser = Deserializer();
 	player2.Read(deser, ser.GetBuffer());
