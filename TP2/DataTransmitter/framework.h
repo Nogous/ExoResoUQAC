@@ -29,9 +29,9 @@ static int Decompressor(int i, int min)
 	return i;
 }
 
-static float Decompressor(float f, float min, int accuracy)
+static float Decompressor(int i, float min, int accuracy)
 {
-	f /= accuracy;
+	float f = (float)i/accuracy;
 	f += min;
 	return f;
 }
