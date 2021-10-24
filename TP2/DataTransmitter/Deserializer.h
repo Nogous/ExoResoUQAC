@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Vector3.h"
 
 class Deserializer
 {
@@ -11,9 +12,8 @@ public:
 	~Deserializer();
 
 	int ReadInt(std::vector<char> buffer, int min, int max);
-	/*template <class T>
-	int ReadInt(std::vector<char> buffer, const T dataType, int min, int max);*/
 
 	float ReadFloat(std::vector<char> buffer, float min, float max, int accuracy);
 
+	Vector3 ReadVector3(std::vector<char> buffer, Vector3 min, Vector3 max, int accuracy);
 };

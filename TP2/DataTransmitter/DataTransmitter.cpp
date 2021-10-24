@@ -24,12 +24,13 @@ int main()
 
 	Player player = Player(5400, 3.5f);
 
+
 	Player player2 = Player();
 
-	std::cout << player.life << std::endl;
-	std::cout << player.money << std::endl;
-	std::cout << player2.life << std::endl;
-	std::cout << player2.money << std::endl;
+	player.PrintPlayerData();
+	player.position = Vector3(1, 3.456f, .5437234f);
+	player.size = Vector3(1, 3.456f, .5437234f);
+	player2.PrintPlayerData();
 	std::cout << "---------------------------" << std::endl;
 
 	Serializer ser = Serializer(1);
@@ -37,15 +38,9 @@ int main()
 	Deserializer deser = Deserializer();
 	player2.Read(deser, ser.GetBuffer());
 
-	std::cout << player.life << std::endl;
-	std::cout << player.money << std::endl;
-	std::cout << player2.life << std::endl;
-	std::cout << player2.money << std::endl;
 
-	//float myFloat = 1.23456f;
-	//int myInt = 4000;
-	//std::cout << "Compressed float : " << Compressor(myFloat) << std::endl;
-	//std::cout << "Decompressed float : " << Decompressor(Compressor(myFloat)) << std::endl;
-	//std::cout << Compressor(myInt) << std::endl;
+	player.PrintPlayerData();
+	player2.PrintPlayerData();
+
 	return 0;
 }
