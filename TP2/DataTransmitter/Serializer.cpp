@@ -96,7 +96,7 @@ void Serializer::Write(Vector3 data, Vector3 min, Vector3 max, int accuracy)
 
 void Serializer::Write(Quaternion data)
 {
-	char maxIndex;
+	int maxIndex;
 	float maxValue = -2;
 	float sign = 1;
 
@@ -122,28 +122,23 @@ void Serializer::Write(Quaternion data)
 			switch (i)
 			{
 			case 0:
-				maxIndex = 'x';
+				maxIndex = 0;
 				break;
 			case 1:
-				maxIndex = 'y';
+				maxIndex = 1;
 				break;
 			case 2:
-				maxIndex = 'z';
+				maxIndex = 2;
 				break;
 			case 3:
-				maxIndex = 'w';
+				maxIndex = 3;
 				break;
 			}
 			maxValue = abs;
 		}
 	}
 
-	char* c;
-	uint8_t shortData = maxIndex;
-	c = (char*)shortData;
-
-	std::memcpy(buffer.data() + position, &c, sizeof(uint8_t));
-	position += sizeof(uint8_t);
+	Write(maxIndex, 0, 3);
 
 	switch (maxIndex)
 	{
