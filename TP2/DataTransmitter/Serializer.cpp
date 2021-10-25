@@ -56,7 +56,7 @@ void Serializer::Write(int data, int min, int max)
 
 void Serializer::Write(float data, float min, float max, int accuracy)
 {
-	size_t sizeMax = std::abs(max - min);
+	size_t sizeMax = std::abs(max * accuracy - min * accuracy);
 
 	int compresedData = Compressor(data, min, max, accuracy);
 
@@ -77,6 +77,11 @@ void Serializer::Write(float data, float min, float max, int accuracy)
 		c = (char*)shortData;
 		sizeMax = sizeof(shortData);
 	}
+	else if (sizeMax <= UINT64_MAX) {
+		uint32_t shortData = compresedData;
+		c = (char*)shortData;
+		sizeMax = sizeof(shortData);
+	}
 
 	if (position + sizeMax > buffer.size())
 	{
@@ -89,9 +94,9 @@ void Serializer::Write(float data, float min, float max, int accuracy)
 
 void Serializer::Write(Vector3 data, Vector3 min, Vector3 max, int accuracy)
 {
-	Write(data.x, min.x, max.x, accuracy);
-	Write(data.y, min.y, max.y, accuracy);
-	Write(data.z, min.z, max.z, accuracy);
+	Write((float)data.x, min.x, max.x, accuracy);
+	Write((float)data.y, min.y, max.y, accuracy);
+	Write((float)data.z, min.z, max.z, accuracy);
 }
 
 void Serializer::Write(Quaternion data)

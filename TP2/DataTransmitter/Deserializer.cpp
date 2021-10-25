@@ -42,7 +42,7 @@ int Deserializer::ReadInt(std::vector<char> buffer, int min, int max)
 
 float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, int accuracy)
 {
-	size_t sizeMax = std::abs(max - min);
+	size_t sizeMax = std::abs(max*accuracy - min * accuracy);
 
 	if (sizeMax <= UINT8_MAX) {
 		sizeMax = sizeof(uint8_t);
@@ -64,6 +64,13 @@ float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, in
 		std::memcpy(c, buffer.data() + position, sizeMax);
 		position += sizeMax;
 		return Decompressor(((int)*(uint32_t*)c), min, accuracy);
+	}
+	else if (sizeMax <= UINT64_MAX) {
+		sizeMax = sizeof(uint64_t);
+		unsigned char c[sizeof(uint64_t)];
+		std::memcpy(c, buffer.data() + position, sizeMax);
+		position += sizeMax;
+		return Decompressor(((int)*(uint64_t*)c), min, accuracy);
 	}
 	return -1;
 }

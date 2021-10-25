@@ -22,16 +22,16 @@ int main()
 	s.SerializeData(myFloat);
 	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;*/
 
-	Player player = Player(200, -9876.5f, Vector3(1, 3.456f, .543f), Quaternion());
+	Player player = Player(200, -9876.5f, Vector3(1.1f, 1.1f, 1.1f), Quaternion());
 
 
 	Player player2 = Player();
 	player2.rotation.w = 2;
 
 	player.armor = 2;
-	player.size = Vector3(1, 3.456f, .5437234f);
+	player.size = Vector3(1.12f, -10.2f, .13f);
 
-	Serializer ser = Serializer(1);
+	Serializer ser = Serializer();
 	player.Write(ser);
 	Deserializer deser = Deserializer();
 	player2.Read(deser, ser.GetBuffer());

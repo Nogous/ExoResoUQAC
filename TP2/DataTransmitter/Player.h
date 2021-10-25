@@ -14,7 +14,7 @@ private:
 
 	const Vector3 MIN_SIZE = Vector3::zero();
 	const Vector3 MAX_SIZE = Vector3::one();
-	const int ACCURACY_SIZE = 1000;
+	const int ACCURACY_SIZE = 100;
 
 	const int MIN_LIFE = 0;
 	const int MAX_LIFE = 300;
@@ -24,7 +24,7 @@ private:
 
 	const float MIN_MONEY = -99999.99f;
 	const float MAX_MONEY =  99999.99f;
-	const int ACCURACY_MONEY = 100;
+	const int ACCURACY_MONEY = 1000;
 
 	const int MAX_NAME_SIZE = 128;
 
