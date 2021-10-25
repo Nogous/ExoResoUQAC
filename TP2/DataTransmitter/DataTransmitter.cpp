@@ -22,13 +22,12 @@ int main()
 	s.SerializeData(myFloat);
 	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;*/
 
-	Player player = Player(5400, 3.5f);
+	Player player = Player(5400, 3.5f, Vector3(1, 3.456f, .5437234f), Quaternion(0,0,0.7f,0.3f));
 
 
 	Player player2 = Player();
 
 	player.PrintPlayerData();
-	player.position = Vector3(1, 3.456f, .5437234f);
 	player.size = Vector3(1, 3.456f, .5437234f);
 	player2.PrintPlayerData();
 	std::cout << "---------------------------" << std::endl;

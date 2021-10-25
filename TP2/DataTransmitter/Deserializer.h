@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Vector3.h"
+#include "Quaternion.h"
 
 class Deserializer
 {
@@ -16,4 +17,5 @@ public:
 	float ReadFloat(std::vector<char> buffer, float min, float max, int accuracy);
 
 	Vector3 ReadVector3(std::vector<char> buffer, Vector3 min, Vector3 max, int accuracy);
+	Quaternion ReadQuat(std::vector<char> buffer);
 };

@@ -1,6 +1,7 @@
 #include "Serializer.h"
 #include "Deserializer.h"
 #include "Vector3.h"
+#include "Quaternion.h"
 #include <string>
 
 class Player {
@@ -30,12 +31,14 @@ private:
 
 public :
 	Player(int life, float money) : life(life), money(money) {}
+	Player(int life, float money, Vector3 position) : life(life), money(money), position(position){}
+	Player(int life, float money, Vector3 position, Quaternion rotation) : life(life), money(money), position(position), rotation(rotation) {}
 	Player() = default;
 	~Player() = default;
 
 	int classId = 11;
 	Vector3 position = Vector3();
-	//Quaternion rotation;
+	Quaternion rotation = Quaternion();
 	Vector3 size = Vector3::one();
 	int life;
 	int armor = 0;

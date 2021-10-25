@@ -93,3 +93,79 @@ void Serializer::Write(Vector3 data, Vector3 min, Vector3 max, int accuracy)
 	Write(data.y, min.y, max.y, accuracy);
 	Write(data.z, min.z, max.z, accuracy);
 }
+
+void Serializer::Write(Quaternion data)
+{
+	char maxIndex;
+	float maxValue = -2;
+	float sign = 1;
+
+	for (int i = 0; i < 4; i++)
+	{
+		float element = data.x;
+		switch (i)
+		{
+		case 1:
+			element = data.y;
+			break;
+		case 2:
+			element = data.z;
+			break;
+		case 3:
+			element = data.w;
+			break;
+		}
+		float abs = (element <0)? -element : element;
+		if (abs > maxValue)
+		{
+			sign = (element < 0) ? -1 : 1;
+			switch (i)
+			{
+			case 0:
+				maxIndex = 'x';
+				break;
+			case 1:
+				maxIndex = 'y';
+				break;
+			case 2:
+				maxIndex = 'z';
+				break;
+			case 3:
+				maxIndex = 'w';
+				break;
+			}
+			maxValue = abs;
+		}
+	}
+
+	char* c;
+	uint8_t shortData = maxIndex;
+	c = (char*)shortData;
+
+	std::memcpy(buffer.data() + position, &c, sizeof(uint8_t));
+	position += sizeof(uint8_t);
+
+	switch (maxIndex)
+	{
+	case 'x':
+		Write(data.y, -0.707, 0.707, 1000);
+		Write(data.z, -0.707, 0.707, 1000);
+		Write(data.w, -0.707, 0.707, 1000);
+		break;
+	case 'y':
+		Write(data.x, -0.707, 0.707, 1000);
+		Write(data.z, -0.707, 0.707, 1000);
+		Write(data.w, -0.707, 0.707, 1000);
+		break;
+	case 'z':
+		Write(data.x, -0.707, 0.707, 1000);
+		Write(data.y, -0.707, 0.707, 1000);
+		Write(data.w, -0.707, 0.707, 1000);
+		break;
+	case 'w':
+		Write(data.x, -0.707, 0.707, 1000);
+		Write(data.y, -0.707, 0.707, 1000);
+		Write(data.z, -0.707, 0.707, 1000);
+		break;
+	}
+}
