@@ -45,6 +45,7 @@ float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, in
 	return ((float)ReadInt(buffer, min, max)) / accuracy;
 
 	size_t sizeMax = std::abs(max - min);
+
 	if (sizeMax <= UINT8_MAX) {
 		sizeMax = sizeof(uint8_t);
 		unsigned char c[sizeof(uint8_t)];
@@ -66,13 +67,15 @@ float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, in
 		position += sizeMax;
 		return Decompressor(((int)*(uint32_t*)c), min, accuracy);
 	}
-
-	return-1;
+	return -1;
 }
 
 Vector3 Deserializer::ReadVector3(std::vector<char> buffer, Vector3 min, Vector3 max, int accuracy)
 {
-	return Vector3(ReadFloat(buffer,min.x,max.x,accuracy), ReadFloat(buffer, min.y, max.y, accuracy), ReadFloat(buffer, min.z, max.z, accuracy));
+	float x = ReadFloat(buffer, min.x, max.x, accuracy);
+	float y = ReadFloat(buffer, min.y, max.y, accuracy);
+	float z = ReadFloat(buffer, min.z, max.z, accuracy);
+	return Vector3(x,y,z);
 }
 
 Quaternion Deserializer::ReadQuat(std::vector<char> buffer)

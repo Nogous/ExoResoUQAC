@@ -29,6 +29,11 @@ int main()
 
 	player.PrintPlayerData();
 	player.size = Vector3(1, 3.456f, .5437234f);
+	player.money = 3.456f;
+	player.PrintPlayerData();
+
+	std::cout << "-------Init-Player2--------" << std::endl;
+
 	player2.PrintPlayerData();
 	std::cout << "---------------------------" << std::endl;
 
@@ -37,8 +42,11 @@ int main()
 	Deserializer deser = Deserializer();
 	player2.Read(deser, ser.GetBuffer());
 
+	std::cout << "-------Update-Player1--------" << std::endl;
 
 	player.PrintPlayerData();
+	std::cout << "-------Update-Player2--------" << std::endl;
+
 	player2.PrintPlayerData();
 
 	return 0;

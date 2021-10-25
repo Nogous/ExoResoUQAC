@@ -8,16 +8,16 @@ class Player {
 
 private:
 
-	const Vector3 MIN_POS = Vector3(-500, -500, 0);
-	const Vector3 MAX_POS = Vector3(500, 500, 100);
+	const Vector3 MIN_POS = Vector3(-10, -10, -10);
+	const Vector3 MAX_POS = Vector3(500, 500, 500);
 	const int ACCURACY_POS = 1000;
 
 	const Vector3 MIN_SIZE = Vector3::zero();
 	const Vector3 MAX_SIZE = Vector3::one();
-	const int ACCURACY_SIZE = 2;
+	const int ACCURACY_SIZE = 10;
 
 	const int MIN_LIFE = 0;
-	const int MAX_LIFE = 300;
+	const int MAX_LIFE = 500;
 
 	const int MIN_ARMOR = 0;
 	const int MAX_ARMOR = 50;
