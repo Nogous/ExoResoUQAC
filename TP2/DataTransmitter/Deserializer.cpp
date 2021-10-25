@@ -42,8 +42,6 @@ int Deserializer::ReadInt(std::vector<char> buffer, int min, int max)
 
 float Deserializer::ReadFloat(std::vector<char> buffer, float min, float max, int accuracy)
 {
-	return ((float)ReadInt(buffer, min, max)) / accuracy;
-
 	size_t sizeMax = std::abs(max - min);
 	if (sizeMax <= UINT8_MAX) {
 		sizeMax = sizeof(uint8_t);
@@ -77,34 +75,31 @@ Vector3 Deserializer::ReadVector3(std::vector<char> buffer, Vector3 min, Vector3
 
 Quaternion Deserializer::ReadQuat(std::vector<char> buffer)
 {
-	unsigned char c[sizeof(uint8_t)];
-	std::memcpy(c, buffer.data() + position, sizeof(uint8_t));
-	position += sizeof(uint8_t);
-	char index = ((char)*(uint8_t*)c);
+	int index = ReadInt(buffer, 0,3);
 
 	Quaternion q = Quaternion();
 
 	switch (index)
 	{
-	case 'x':
+	case 0:
 		q.y = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.z = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.w = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.x = std::sqrt(1 - (q.y * q.y + q.z * q.z + q.w * q.w));
 		break;
-	case 'y':
+	case 1:
 		q.x = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.z = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.w = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.y = std::sqrt(1 - (q.x * q.x + q.z * q.z + q.w * q.w));
 		break;
-	case 'z':
+	case 2:
 		q.x = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.y = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.w = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.z = std::sqrt(1 - (q.x * q.x + q.y * q.y + q.w * q.w));
 		break;
-	case 'w':
+	case 3:
 		q.x = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.y = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.z = ReadFloat(buffer, -0.707, 0.707, 1000);

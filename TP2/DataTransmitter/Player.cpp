@@ -29,7 +29,7 @@ int Player::GetDataSize()
 void Player::PrintPlayerData()
 {
 	printf("position : x:%.3f, y:%.3f, z:%.3f\n", position.x, position.y, position.z);
-	printf("rotation : x:%f, y:%f, z:%f\n", rotation.x,rotation.y,rotation.z);
+	printf("rotation : x:%f, y:%f, z:%f, w:%f\n", rotation.x,rotation.y,rotation.z, rotation.w);
 	printf("size : x:%.3f, y:%.3f, z:%.3f\n", size.x, size.y, size.z);
 	printf("life : %d\n", life);
 	printf("armor : %d\n", armor);
