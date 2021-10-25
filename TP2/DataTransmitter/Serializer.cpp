@@ -103,7 +103,6 @@ void Serializer::Write(Quaternion data)
 {
 	int maxIndex;
 	float maxValue = -2;
-	float sign = 1;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -120,10 +119,9 @@ void Serializer::Write(Quaternion data)
 			element = data.w;
 			break;
 		}
-		float abs = (element <0)? -element : element;
+		float abs = std::abs(element);
 		if (abs > maxValue)
 		{
-			sign = (element < 0) ? -1 : 1;
 			switch (i)
 			{
 			case 0:
@@ -147,22 +145,22 @@ void Serializer::Write(Quaternion data)
 
 	switch (maxIndex)
 	{
-	case 'x':
+	case 0:
 		Write(data.y, -0.707, 0.707, 1000);
 		Write(data.z, -0.707, 0.707, 1000);
 		Write(data.w, -0.707, 0.707, 1000);
 		break;
-	case 'y':
+	case 1:
 		Write(data.x, -0.707, 0.707, 1000);
 		Write(data.z, -0.707, 0.707, 1000);
 		Write(data.w, -0.707, 0.707, 1000);
 		break;
-	case 'z':
+	case 2:
 		Write(data.x, -0.707, 0.707, 1000);
 		Write(data.y, -0.707, 0.707, 1000);
 		Write(data.w, -0.707, 0.707, 1000);
 		break;
-	case 'w':
+	case 3:
 		Write(data.x, -0.707, 0.707, 1000);
 		Write(data.y, -0.707, 0.707, 1000);
 		Write(data.z, -0.707, 0.707, 1000);

@@ -113,7 +113,7 @@ Quaternion Deserializer::ReadQuat(std::vector<char> buffer)
 		q.x = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.y = ReadFloat(buffer, -0.707, 0.707, 1000);
 		q.z = ReadFloat(buffer, -0.707, 0.707, 1000);
-		q.z = std::sqrt(1 - (q.x * q.x + q.y * q.y + q.z * q.z));
+		q.w = std::sqrt(1 - (q.x * q.x + q.y * q.y + q.z * q.z));
 		break;
 	}
 	return q;

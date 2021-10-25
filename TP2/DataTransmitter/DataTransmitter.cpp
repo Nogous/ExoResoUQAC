@@ -22,7 +22,7 @@ int main()
 	s.SerializeData(myFloat);
 	std::cout << "Buffer contains : " << s.GetBuffer().data() << std::endl;*/
 
-	Player player = Player(200, -9876.5f, Vector3(1.1f, 1.1f, 1.1f), Quaternion());
+	Player player = Player(200, -9876.5f, Vector3(1.1f, 1.1f, 1.1f), Quaternion(.5f,.2f,.5f, std::sqrt(1 - (.5f * .5f + .2f * .2f + .5f * .5f))));
 
 
 	Player player2 = Player();
